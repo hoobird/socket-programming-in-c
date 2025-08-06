@@ -1,3 +1,7 @@
+ncclient
+ncserver
+/.vscode
+
 # Prerequisites
 *.d
 
