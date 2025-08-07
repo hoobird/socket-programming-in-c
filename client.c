@@ -27,13 +27,11 @@ int main(int argc, char const *argv[])
     // form
     if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0)
     {
-        printf(
-            "\nInvalid address/ Address not supported \n");
+        printf("\nInvalid address/ Address not supported \n");
         return -1;
     }
 
-    if ((status = connect(client_fd, (struct sockaddr *)&serv_addr,
-                          sizeof(serv_addr))) < 0)
+    if ((status = connect(client_fd, (struct sockaddr *)&serv_addr, sizeof(serv_addr))) < 0)
     {
         printf("\nConnection Failed \n");
         return -1;
@@ -43,8 +41,7 @@ int main(int argc, char const *argv[])
     // terminator at the end
     send(client_fd, hello, strlen(hello), 0);
     printf("Hello message sent\n");
-    valread = read(client_fd, buffer,
-                   1024 - 1);
+    valread = read(client_fd, buffer, 1024 - 1);
     if (valread <= 0)
         return 1;
     printf("%s\n", buffer);

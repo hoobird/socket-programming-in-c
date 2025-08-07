@@ -25,9 +25,7 @@ int main(int argc, char const* argv[])
     }
 
     // Forcefully attaching socket to the port 8080
-    if (setsockopt(server_fd, SOL_SOCKET,
-                   SO_REUSEADDR, &opt,
-                   sizeof(opt))) {
+    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt))) {
         perror("setsockopt");
         exit(EXIT_FAILURE);
     }
@@ -36,9 +34,7 @@ int main(int argc, char const* argv[])
     address.sin_port = htons(PORT);
 
     // Forcefully attaching socket to the port 8080
-    if (bind(server_fd, (struct sockaddr*)&address,
-             sizeof(address))
-        < 0) {
+    if (bind(server_fd, (struct sockaddr*)&address, sizeof(address)) < 0) {
         perror("bind failed");
         exit(EXIT_FAILURE);
     }
@@ -46,9 +42,7 @@ int main(int argc, char const* argv[])
         perror("listen");
         exit(EXIT_FAILURE);
     }
-    if ((new_socket
-         = accept(server_fd, (struct sockaddr*)&address,
-                  &addrlen))
+    if ((new_socket = accept(server_fd, (struct sockaddr*)&address, &addrlen))
         < 0) {
         perror("accept");
         exit(EXIT_FAILURE);
@@ -56,8 +50,7 @@ int main(int argc, char const* argv[])
   
     // subtract 1 for the null
     // terminator at the end
-    valread = read(new_socket, buffer,
-                   1024 - 1); 
+    valread = read(new_socket, buffer, 1024 - 1); 
     if (valread <= 0) 
         return 1;
     printf("%s\n", buffer);
