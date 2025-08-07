@@ -9,6 +9,7 @@
 int main()
 {
     // 1. Create a Listening Socket (Non-Blocking)
+    // create socket
     int server_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (server_fd < 0)
     {
@@ -24,7 +25,8 @@ int main()
     struct sockaddr_in addr = {
         .sin_family = AF_INET,
         .sin_addr.s_addr = INADDR_ANY,
-        .sin_port = htons(8080)};
+        .sin_port = htons(8080)
+    };
 
     if (bind(server_fd, (struct sockaddr *)&addr, sizeof(addr)) < 0)
     {
